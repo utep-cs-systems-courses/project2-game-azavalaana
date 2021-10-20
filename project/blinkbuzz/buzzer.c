@@ -18,9 +18,9 @@
 #define C5 956
 
 
-static int counter1 = 0; //Counter to keep track of the notes in the Super Mario Theme song
-static int counter2 = 0; //Counter to keep track of the notes in the Star Wars Theme song
-static int counter3 = 0; //Counter to keep track of the notes in the Star song from Super Mario
+static int counter1 = 0; 
+static int counter2 = 0; 
+static int counter3 = 0; 
 
 void buzzer_init(){
   /*
