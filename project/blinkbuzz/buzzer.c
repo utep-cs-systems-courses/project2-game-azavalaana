@@ -1,7 +1,6 @@
-#include <msp430.h>
 #include "libTimer.h"
 #include "buzzer.h"
-#include "switches.h"
+#include <msp430.h>
 
 static int counterForIMSong = 0; //Counter to keep track of the notes in the Iron Man song
 static int counterForSMTheme = 0; //Counter to keep track of the notes in the Super Mario Theme song
@@ -9,14 +8,26 @@ static int counterForSWTheme = 0; //Counter to keep track of the notes in the St
 static int counterForStarSong = 0; //Counter to keep track of the notes in the Star song from Super Mario
 
 void buzzer_init(){
-  timerAUpmode();
+  /*
+    Direct timer A output "TA0.1" to P2.6.
+    According to table 21 from data sheet:
+    P2SEL2.6, P2SEL2.7, and P2SEL.7 must be zero
+    P2SEL.6 must be 1
+    Also: P2.6 direction must be output
+  */
+  timerAUpmode(); //used to drive speaker
   P2SEL2 &= ~(BIT6 | BIT7);
   P2SEL &= ~BIT7;
   P2SEL |= BIT6;
-  P2DIR = BIT6;
+  P2DIR = BIT6; //enable output to speaker (P2.6)
 }
 
-
+/*
+  ironManSong is a method which calls the buzzer_set_period method
+  from the buzzer.h file to produce the sound of the frequency specified on
+  each case. When the method is called consistently, the song Iron Man by Black 
+  Sabbath is played on the MSP430's speaker.
+*/
 void ironManSong(){
   switch(counterForIMSong){
   case 0: buzzer_set_period(750); counterForIMSong++; break; //E note
@@ -37,7 +48,12 @@ void ironManSong(){
   }
 }
 
-
+/*
+  superMarioTheme is a method which calls the buzzer_set_period method
+  from the buzzer.h file to produce the sound of the frequency specified on
+  each case. When the method is called consistently, the song from the Super Mario
+  game is played on the MSP430's speaker.
+*/
 void superMarioTheme(){
   switch(counterForSMTheme){
   case 0:
@@ -50,6 +66,12 @@ void superMarioTheme(){
   }
 }
 
+/*
+  starWarsTheme is a method which calls the buzzer_set_period method
+  from the buzzer.h file to produce the sound of the frequency specified on
+  each case. When the method is called consistently, the song from the Star Wars
+  movie is played on the MSP430's speaker.
+*/
 void starWarsTheme(){
   switch(counterForSWTheme){
   case 0: buzzer_set_period(950); counterForSWTheme++; break; //Lower C note
@@ -71,6 +93,12 @@ void starWarsTheme(){
   }
 }
 
+/*
+  starSong is a method which calls the buzzer_set_period method
+  from the buzzer.h file to produce the sound of the frequency specified on
+  each case. When the method is called consistently, the song from the Super Mario
+  game when you get a star is played on the MSP430's speaker.
+*/
 void starSong(){
   switch(counterForStarSong){
   case 0:
@@ -96,5 +124,5 @@ void starSong(){
 
 void buzzer_set_period(short cycles){
   CCR0 = cycles;
-  CCR1 = cycles >> 1;
+  CCR1 = cycles >> 1; //one half cycle
 }
