@@ -8,20 +8,16 @@ LDFLAGS		= -L/opt/ti/msp430_gcc/include
 CC              = msp430-elf-gcc
 AS              = msp430-elf-as
 
-all: main.elf 
+all: blinkbuzz.elf 
 
 #additional rules for files
-main.elf: ${COMMON_OBJECTS} blinkbuzzMain.o p2_interrupt_handler.o led.o switches.o buzzer.o ../project/lib/libTimer.a
+blinkbuzz.elf: ${COMMON_OBJECTS} p2_interrupt_handler.o led.o switches.o blinkbuzzMain.o buzzer.o ../lib/libTimer.a
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
-load: main.elf
-	msp430loader.sh main.elf
+load: blinkbuzz.elf
+	#mspdebug rf2500 "prog blinkbuzz.elf"
+	msp430loader.sh blinkbuzz.elf
 
 clean:
-	rm -f *.o *.elf
+	rm -f *.o *.elf *~
 
-blinkbuzzMain.c: buzzer.h led.h switches.h
-switches.c: switches.h
-led.c: led.h
-buzzer.c: buzzer.h
-p1_interrupt_handler.c: switches.h
