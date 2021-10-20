@@ -18,9 +18,9 @@
 #define C5 956
 
 
-static int counterForSMTheme = 0; //Counter to keep track of the notes in the Super Mario Theme song
-static int counterForSWTheme = 0; //Counter to keep track of the notes in the Star Wars Theme song
-static int counterForStarSong = 0; //Counter to keep track of the notes in the Star song from Super Mario
+static int counter1 = 0; //Counter to keep track of the notes in the Super Mario Theme song
+static int counter2 = 0; //Counter to keep track of the notes in the Star Wars Theme song
+static int counter3 = 0; //Counter to keep track of the notes in the Star song from Super Mario
 
 void buzzer_init(){
   /*
@@ -54,14 +54,14 @@ void errorTone(){
   game is played on the MSP430's speaker.
 */
 void superMarioTheme(){
-  switch(counterForSMTheme){
+  switch(counter1){
   case 0:
   case 1:
   case 2:
-  case 4: buzzer_set_period(750); counterForSMTheme++; break; //E note
-  case 3: buzzer_set_period(950); counterForSMTheme++; break; //C note
-  case 5: buzzer_set_period(630); counterForSMTheme++; break; //G note
-  case 6: buzzer_set_period(1260); counterForSMTheme = 0; break; //Lower G note
+  case 4: buzzer_set_period(750); counter1++; break; //E note
+  case 3: buzzer_set_period(950); counter1++; break; //C note
+  case 5: buzzer_set_period(630); counter1++; break; //G note
+  case 6: buzzer_set_period(1260); counter1 = 0; break; //Lower G note
   }
 }
 
@@ -72,23 +72,23 @@ void superMarioTheme(){
   movie is played on the MSP430's speaker.
 */
 void starWarsTheme(){
-  switch(counterForSWTheme){
-  case 0: buzzer_set_period(950); counterForSWTheme++; break; //Lower C note
+  switch(counter2){
+  case 0: buzzer_set_period(950); counter2++; break; //Lower C note
   case 1:
   case 6:
-  case 11: buzzer_set_period(630); counterForSWTheme++; break; //G note
+  case 11: buzzer_set_period(630); counter2++; break; //G note
   case 2:
   case 7:
   case 12:
-  case 14: buzzer_set_period(710); counterForSWTheme++; break; //F note
+  case 14: buzzer_set_period(710); counter2++; break; //F note
   case 3:
   case 8:
-  case 13: buzzer_set_period(750); counterForSWTheme++; break; //E note
+  case 13: buzzer_set_period(750); counter2++; break; //E note
   case 4:
   case 9:
-  case 15: buzzer_set_period(840); if(counterForSWTheme==15){counterForSWTheme = 0;} else{counterForSWTheme++;}; break;//D note
+  case 15: buzzer_set_period(840); if(counter2==15){counter2 = 0;} else{counter2++;}; break;//D note
   case 5:
-  case 10: buzzer_set_period(475); counterForSWTheme++; break; //C note
+  case 10: buzzer_set_period(475); counter2++; break; //C note
   }
 }
 
@@ -99,25 +99,25 @@ void starWarsTheme(){
   game when you get a star is played on the MSP430's speaker.
 */
 void starSong(){
-  switch(counterForStarSong){
+  switch(counter3){
   case 0:
   case 1:
   case 2:
   case 3:
   case 4:
   case 6:
-  case 8: buzzer_set_period(950); counterForStarSong++; break; //C note
+  case 8: buzzer_set_period(950); counter3++; break; //C note
   case 5:
-  case 7: buzzer_set_period(1130); counterForStarSong++; break; //A note
+  case 7: buzzer_set_period(1130); counter3++; break; //A note
   case 9:
   case 10:
   case 11:
   case 12:
   case 13:
   case 15:
-  case 17: buzzer_set_period(1000); if(counterForStarSong==17){counterForStarSong = 0;} else{counterForStarSong++;}; break; //B
+  case 17: buzzer_set_period(1000); if(counter3==17){counter3 = 0;} else{counter3++;}; break; //B
   case 14:
-  case 16: buzzer_set_period(1270); counterForStarSong++; break; //G note
+  case 16: buzzer_set_period(1270); counter3++; break; //G note
   }
 }
 
