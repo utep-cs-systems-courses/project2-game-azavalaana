@@ -47,12 +47,7 @@ void errorTone(){
   }  
 }
 
-/*
-  superMarioTheme is a method which calls the buzzer_set_period method
-  from the buzzer.h file to produce the sound of the frequency specified on
-  each case. When the method is called consistently, the song from the Super Mario
-  game is played on the MSP430's speaker.
-*/
+
 void superMarioTheme(){
   switch(counter1){
   case 0:
@@ -65,12 +60,7 @@ void superMarioTheme(){
   }
 }
 
-/*
-  starWarsTheme is a method which calls the buzzer_set_period method
-  from the buzzer.h file to produce the sound of the frequency specified on
-  each case. When the method is called consistently, the song from the Star Wars
-  movie is played on the MSP430's speaker.
-*/
+
 void starWarsTheme(){
   switch(counter2){
   case 0: buzzer_set_period(950); counter2++; break; //Lower C note
@@ -92,12 +82,6 @@ void starWarsTheme(){
   }
 }
 
-/*
-  starSong is a method which calls the buzzer_set_period method
-  from the buzzer.h file to produce the sound of the frequency specified on
-  each case. When the method is called consistently, the song from the Super Mario
-  game when you get a star is played on the MSP430's speaker.
-*/
 void starSong(){
   switch(counter3){
   case 0:
