@@ -136,9 +136,9 @@
 
 
 
-static int counterForSMTheme = 0; //Counter to keep track of the notes in the Super Mario Theme song
-static int counterForSWTheme = 0; //Counter to keep track of the notes in the Star Wars Theme song
-static int counterForStarSong = 0; //Counter to keep track of the notes in the Star song from Super Mario
+static int counter1 = 0; 
+static int counter2 = 0; 
+static int counter3 = 0; 
 
 void buzzer_init()
 {
@@ -166,6 +166,7 @@ void beep(){
     __delay_cycles(1200000); // delay the program and wait x clock cycles
     }
 }
+<<<<<<< HEAD
 // random set of notes to create a small tune
 void errorTone(){
     int notes[] = {A4, 0, A3, 0, E3, 0, G3, 0, F4, 0, A4, 0, A3, 0, E3, 0, G3, 0, F4, 0};
@@ -210,9 +211,7 @@ void starSong(){
   NOTE_CS4, NOTE_DS4, NOTE_DS4, NOTE_GS3,
   NOTE_G3, NOTE_CS4, NOTE_C4, NOTE_FS4, NOTE_F4, NOTE_E3, NOTE_AS4, NOTE_A4, NOTE_GS4, NOTE_DS4, NOTE_B3,
   NOTE_AS3, NOTE_A3, NOTE_GS3,
-  0, 0, 0
-};
-
+  0, 0, 0 };
   for(int i = 0; i < sizeof(notes)/sizeof(*notes); i++) {
     buzzer_set_period(notes[i]);
     __delay_cycles(2000000);
